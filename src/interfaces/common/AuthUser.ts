@@ -1,8 +1,4 @@
-import {
-    User as UserWithRelationsInterface
-} from "./UserWithRelations";
-
-export interface AuthUser extends UserWithRelationsInterface {
+export interface AuthUser {
     isProfileVisibleForMe?: boolean;
     hasPendingFollowRequest?: boolean;
     vopPoint?: number;

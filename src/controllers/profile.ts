@@ -11,7 +11,8 @@ class Profile extends Base {
     }
 
     public intializeRoutes() {
-        this.router.get('/cc', this.getUser);
+        this.router.get('/detail', this.getUser);
+        this.router.get('/update', this.getUser);
     }
 
     private async getUser(req: Request, res: Response) {
