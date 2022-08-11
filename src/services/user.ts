@@ -1,12 +1,10 @@
-import UserModel from "../models/user";
-import {UserWithToken as UserWithTokenInterface} from "../interfaces/controllers/User";
-import {AuthUser} from "../interfaces/common/AuthUser";
+import UserModel, {IUser as AuthUser} from "../models/user";
 import {updateUser as updateUserDto} from "../dtos/request/updateUser";
 
 
 class User {
 
-    public static async getById(id: string): Promise<UserWithTokenInterface> {
+    public static async getById(id: string): Promise<AuthUser> {
         return UserModel.findById(id);
     }
 
@@ -14,13 +12,19 @@ class User {
 
         const education = body.educations.map(e => ({
             education: e.education,
-            educationProfileOrderIndex: parseInt(e.orderNo),
+            educationProfileOrderIndex: e.orderNo,
         }));
 
         const jobBulk = body.jobs.map(j => ({
             jobExperience: j.job,
-            jobExperienceOrderIndex: parseInt(j.orderNo),
+            jobExperienceOrderIndex: j.orderNo,
         }));
+
+        authUser.name = body.name;
+        authUser.lastName = body.lastName;
+        authUser.jobs = jobBulk;
+        authUser.educations = education;
+        authUser.save();
 
         return body;
     }

@@ -1,11 +1,11 @@
 interface Education {
     education: string;
-    orderNo: string;
+    orderNo: number;
 }
 
 interface Job {
     job: string;
-    orderNo: string;
+    orderNo: number;
 }
 
 export interface updateUser {

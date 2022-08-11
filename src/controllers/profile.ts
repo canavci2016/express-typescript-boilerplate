@@ -1,7 +1,8 @@
 import {Request, Response} from 'express';
 import Base from "./base";
 import UserService from "../services/user";
-import updateUserDto from "..//dtos/request/updateUser";
+import updateUserDto from "../dtos/request/updateUser";
+
 
 class Profile extends Base {
 
@@ -12,7 +13,7 @@ class Profile extends Base {
 
     public intializeRoutes() {
         this.router.get('/detail', this.getUser);
-        this.router.get('/update', this.getUser);
+        this.router.get('/update', this.updateUser);
     }
 
     private async getUser(req: Request, res: Response) {
@@ -20,8 +21,19 @@ class Profile extends Base {
         res.json(user);
     }
 
-    private updateUser(req: Request, res: Response) {
-        const user = UserService.update(updateUserDto(req.body), req.body);
+    private async updateUser(req: Request, res: Response) {
+        let authUser = await UserService.getById(req.query.id.toString());
+        const user = UserService.update(updateUserDto({
+            name: "can",
+            lastName: "avci",
+            about: "ccc",
+            birthDate: "23-10-1993",
+            homeCity: "canada",
+            homeTown: "turkey",
+            educations: [{education: "cc", orderNo: 2}]
+        }), authUser);
+
+        res.send(user);
     }
 
 }
