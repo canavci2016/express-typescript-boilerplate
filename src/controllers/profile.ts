@@ -30,7 +30,8 @@ class Profile extends Base {
             birthDate: "23-10-1993",
             homeCity: "canada",
             homeTown: "turkey",
-            educations: [{education: "cc", orderNo: 2}]
+            educations: [{education: "trakya university", orderNo: 2}],
+            jobs: [{job: "software Engineer", orderNo: 2}]
         }), authUser);
 
         res.send(user);

@@ -10,20 +10,10 @@ class User {
 
     public static update(body: updateUserDto, authUser: AuthUser): updateUserDto {
 
-        const education = body.educations.map(e => ({
-            education: e.education,
-            educationProfileOrderIndex: e.orderNo,
-        }));
-
-        const jobBulk = body.jobs.map(j => ({
-            jobExperience: j.job,
-            jobExperienceOrderIndex: j.orderNo,
-        }));
-
         authUser.name = body.name;
         authUser.lastName = body.lastName;
-        authUser.jobs = jobBulk;
-        authUser.educations = education;
+        authUser.jobs = body.jobs.map(j => ({title: j.job, order: j.orderNo}));
+        authUser.educations = body.educations.map(e => ({title: e.education, order: e.orderNo}));
         authUser.save();
 
         return body;

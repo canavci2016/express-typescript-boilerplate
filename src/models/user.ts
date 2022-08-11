@@ -1,14 +1,16 @@
 import {Schema, model} from 'mongoose';
 
-
-interface Job {
-    jobExperience: string,
-    jobExperienceOrderIndex: number,
+interface TitleAndOrder {
+    title: string;
+    order: number;
 }
 
-interface Education {
-    education: string,
-    educationProfileOrderIndex: number,
+interface Job extends TitleAndOrder {
+
+}
+
+interface Education extends TitleAndOrder {
+
 }
 
 
@@ -28,8 +30,8 @@ const userSchema = new Schema<IUser>({
     lastName: {type: String, required: true},
     email: {type: String, required: true},
     mobile: {type: String, required: true},
-    educations: [{type: {education: String, educationProfileOrderIndex: Number,}, required: true}],
-    jobs: [{type: {jobExperience: String, jobExperienceOrderIndex: Number}, required: true}],
+    educations: [{type: {title: String, order: Number,}, required: true}],
+    jobs: [{type: {title: String, order: Number}, required: true}],
 });
 
 const User = model<IUser>('User', userSchema);
