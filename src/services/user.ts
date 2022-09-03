@@ -1,5 +1,5 @@
-import UserModel, {IUser as AuthUser} from "../models/user";
-import {updateUser as updateUserDto} from "../dtos/request/updateUser";
+import UserModel, { IUser as AuthUser } from "../models/user";
+import { updateUser as updateUserDto } from "../dtos/request/updateUser";
 
 
 class User {
@@ -12,8 +12,8 @@ class User {
 
         authUser.name = body.name;
         authUser.lastName = body.lastName;
-        authUser.jobs = body.jobs.map(j => ({title: j.job, order: j.orderNo}));
-        authUser.educations = body.educations.map(e => ({title: e.education, order: e.orderNo}));
+        authUser.jobs = body.jobs.map(j => ({ title: j.job, order: j.orderNo }));
+        authUser.educations = body.educations.map(e => ({ title: e.education, order: e.orderNo }));
         authUser.save();
 
         return body;

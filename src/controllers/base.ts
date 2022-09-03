@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 
 class Base {
     private _router: Router;
