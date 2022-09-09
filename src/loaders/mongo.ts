@@ -1,9 +1,9 @@
-import { connect as mongodbConnection } from 'mongoose';
+import { connect } from 'mongoose';
 
 type listenFunction = () => void;
 type errorFunction = (reason: any) => void;
 
-export default class MongoDbLoader {
+class MongoDbLoader {
     private host: string;
     private onConnectHandler: listenFunction;
     private onErrorHandler: errorFunction;
@@ -15,7 +15,7 @@ export default class MongoDbLoader {
     }
 
     public connect() {
-        mongodbConnection(this.host).then(this.onConnectHandler).catch(this.onErrorHandler);
+        connect(this.host).then(this.onConnectHandler).catch(this.onErrorHandler);
     }
 
     onConnect = (fn: listenFunction): this => {
@@ -28,3 +28,5 @@ export default class MongoDbLoader {
         return this;
     }
 }
+
+export default MongoDbLoader;
