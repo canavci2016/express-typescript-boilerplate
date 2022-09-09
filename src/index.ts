@@ -1,12 +1,10 @@
-import { Request, Response } from 'express'
 import ExpressLoader from "./loaders/express";
 import { connect as mongodbConnection } from 'mongoose';
-import ProfileController from "./api/controllers/profile";
 import Env from "./helpers/env";
+import routeIndex from "./api/routes";
 
 mongodbConnection(Env.get("MONGODB_HOST")).then(() => console.log("mongodbConnection was successful")).catch(console.log);
 
 const expressApp = new ExpressLoader();
-expressApp.app.get('/', (req: Request, res: Response) => res.status(200).send("ddd"));
-expressApp.useController("/profile", ProfileController);
+routeIndex(expressApp);
 expressApp.listen(Number(Env.get("PORT")));
