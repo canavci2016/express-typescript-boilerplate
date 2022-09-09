@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Base from "./base";
-import UserService from "../services/user";
-import updateUserDto from "../dtos/request/updateUser";
+import UserService from "../../services/user";
+import updateUserDto from "../../dtos/request/updateUser";
 
 
 class Profile extends Base {

@@ -1,7 +1,7 @@
-import {Request, Response} from 'express'
+import { Request, Response } from 'express'
 import ExpressLoader from "./loaders/express";
-import {connect as mongodbConnection} from 'mongoose';
-import ProfileController from "./controllers/profile";
+import { connect as mongodbConnection } from 'mongoose';
+import ProfileController from "./api/controllers/profile";
 import Env from "./helpers/env";
 
 mongodbConnection(Env.get("MONGODB_HOST")).then(() => console.log("mongodbConnection was successful")).catch(console.log);

@@ -1,5 +1,5 @@
 import express, { Express } from 'express';
-import BaseController from '../controllers/base';
+import BaseController from '../api/controllers/base';
 
 type listenFunction = () => void;
 
