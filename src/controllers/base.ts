@@ -1,22 +1,22 @@
 import { Router } from 'express';
 
-class Base {
-    private _router: Router;
+abstract class Base {
+    #_router: Router;
 
     constructor() {
         this.router = Router();
+        this.initializeRoutes();
     }
 
     get router(): Router {
-        return this._router;
+        return this.#_router;
     }
 
     set router(value: Router) {
-        this._router = value;
+        this.#_router = value;
     }
 
-    public initializeRoutes() {
-    }
+    public abstract initializeRoutes(): void;
 
 }
 

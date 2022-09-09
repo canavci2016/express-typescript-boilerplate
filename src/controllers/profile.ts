@@ -6,12 +6,7 @@ import updateUserDto from "../dtos/request/updateUser";
 
 class Profile extends Base {
 
-    constructor() {
-        super();
-        this.intializeRoutes();
-    }
-
-    public intializeRoutes() {
+    public initializeRoutes(): void {
         this.router.get('/detail', this.getUser);
         this.router.get('/update', this.updateUser);
     }
